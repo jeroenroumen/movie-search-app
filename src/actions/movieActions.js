@@ -4,13 +4,17 @@ import {
   MOVIES_ERROR
 } from './types';
 
+const baseUrl = "https://api.themoviedb.org/3/movie";
+
 // Get now running movies
-export const getRunningMovies = () => async dispatch => {
+export const searchMovies = text => async dispatch => {
   try {
     setLoading();
 
-    const res = fetch(`/now_running?api_key=${process.env.REACT_APP_TMDB_CLIENT_SECRET}`);
-    const data = res.json();
+    const res = await fetch(`${baseUrl}/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}`);
+    const data = await res.json();
+
+    console.log(data.results);
 
     dispatch({
       type: GET_MOVIES,
@@ -24,7 +28,7 @@ export const getRunningMovies = () => async dispatch => {
   }
 };
 
-// Set loading
+// set loading to true
 export const setLoading = () => {
   return {
     type: SET_LOADING

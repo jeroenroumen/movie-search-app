@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
+import SearchBar from './components/layout/SearchBar';
+import Movies from './components/movies/Movies';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min';
@@ -14,9 +16,12 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <div className="App">
-        <p>Test</p>
-      </div>
+      <Fragment>
+        <SearchBar />
+        <div className="container">
+          <Movies />
+        </div>
+      </Fragment>
     </Provider>
   );
 };
