@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { searchMovies } from '../../actions/movieActions';
 import Preloader from '../layout/Preloader';
@@ -28,7 +29,13 @@ const Movies = ({ searchMovies, movie: { movies, loading, page } }) => {
         )}
     </ul>
   )
+};
 
+Movies.propTypes = {
+  searchMovies: PropTypes.func.isRequired,
+  movies: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  page: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => ({
