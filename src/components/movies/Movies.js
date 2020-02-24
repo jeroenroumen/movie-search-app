@@ -5,7 +5,7 @@ import { searchMovies } from '../../actions/movieActions';
 import Preloader from '../layout/Preloader';
 import MovieItem from './MovieItem';
 
-const Movies = ({ searchMovies, movie: { movies, loading, page } }) => {
+const Movies = ({ searchMovies, movie: { movies, loading } }) => {
 
   useEffect(() => {
     searchMovies();
@@ -25,7 +25,7 @@ const Movies = ({ searchMovies, movie: { movies, loading, page } }) => {
           <p className="center">No movies to show...</p>
         ) :
         (
-          movies.map(movie => <MovieItem movie={movie} />)
+          movies.map(movie => <MovieItem key={movie.id} movie={movie} />)
         )}
     </ul>
   )
@@ -33,9 +33,7 @@ const Movies = ({ searchMovies, movie: { movies, loading, page } }) => {
 
 Movies.propTypes = {
   searchMovies: PropTypes.func.isRequired,
-  movies: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired,
-  page: PropTypes.number.isRequired
+  movie: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

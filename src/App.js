@@ -1,8 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import store from './store';
-import SearchBar from './components/layout/SearchBar';
-import Movies from './components/movies/Movies';
+import Home from './pages/Home';
+import NavBar from './components/layout/NavBar';
+import About from './pages/About';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min';
@@ -16,12 +18,13 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Fragment>
-        <SearchBar />
-        <div className="container">
-          <Movies />
-        </div>
-      </Fragment>
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/about' component={About} />
+        </Switch>
+      </Router>
     </Provider>
   );
 };
