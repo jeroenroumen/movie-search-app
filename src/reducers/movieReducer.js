@@ -1,4 +1,5 @@
 import {
+  GET_MOVIE,
   GET_MOVIES,
   MOVIES_ERROR,
   SET_LOADING,
@@ -7,6 +8,7 @@ import {
 
 const initialState = {
   movies: [],
+  movie: null,
   page: null,
   total_pages: null,
   loading: false,
@@ -16,6 +18,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case GET_MOVIE:
+      return {
+        ...state,
+        movie: action.payload,
+        loading: false
+      };
     case GET_MOVIES:
       return {
         ...state,

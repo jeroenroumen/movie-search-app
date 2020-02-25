@@ -1,11 +1,12 @@
 import React from 'react';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 
 const MovieItem = ({ movie }) => {
   return (
     <li className='collection-item'>
       <div>
-        <a href='#!'>{movie.title}</a>
+        <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
         <br />
         <span className='black-text'>
           <span className='grey-text'>Released on</span>{' '}
