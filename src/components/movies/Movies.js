@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { searchMovies } from '../../actions/movieActions';
@@ -17,17 +17,19 @@ const Movies = ({ searchMovies, movie: { movies, loading } }) => {
   }
 
   return (
-    <ul className="collection with-header">
-      <li className="collection-header">
-        <h4 className="center">Movies</h4>
-      </li>
-      {!loading && movies.length === 0 ? (
-          <p className="center">No movies to show...</p>
-        ) :
-        (
-          movies.map(movie => <MovieItem key={movie.id} movie={movie} />)
-        )}
-    </ul>
+    <Fragment>
+      <ul className="collection with-header">
+        <li className="collection-header">
+          <h4 className="center">Movies</h4>
+        </li>
+        {!loading && movies.length === 0 ? (
+            <p className="center">No movies to show. Do a search!</p>
+          ) :
+          (
+            movies.map(movie => <MovieItem key={movie.id} movie={movie} />)
+          )}
+      </ul>
+    </Fragment>
   )
 };
 

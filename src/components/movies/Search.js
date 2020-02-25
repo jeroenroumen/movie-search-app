@@ -26,7 +26,7 @@ const Search = () => {
           type="text"
           name="text"
           value={text}
-          placeholder="Search users..."
+          placeholder="Search movies..."
           onChange={e => setText(e.target.value)} />
       </form>
       <Button className="blue">Clear</Button>

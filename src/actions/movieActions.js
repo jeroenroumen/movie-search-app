@@ -11,8 +11,10 @@ export const searchMovies = text => async dispatch => {
   try {
     setLoading();
 
-    const res = await fetch(`${baseUrl}/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}`);
+    const res = await fetch(`${baseUrl}/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}&region=CZ`);
     const data = await res.json();
+
+    console.log(data);
 
     dispatch({
       type: GET_MOVIES,

@@ -5,8 +5,9 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  movies: null,
+  movies: [],
   page: null,
+  total_pages: null,
   loading: false,
   error: false
 };
@@ -18,6 +19,7 @@ export default (state = initialState, action) => {
         ...state,
         movies: action.payload.results,
         page: action.payload.page,
+        total_pages: action.payload.total_pages,
         loading: false
       };
     case MOVIES_ERROR:
