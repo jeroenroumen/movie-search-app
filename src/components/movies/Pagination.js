@@ -15,8 +15,7 @@ const Pagination = ({ loading, movie: { page, total_pages } }) => {
     <ul className="pagination">
       {pageNumbers.map(number => (
         <li key={number}
-            className={ page === number ? 'active blue' : 'waves-effect' }
-            >
+            className={ page === number ? 'active blue' : 'waves-effect' }>
           <a href="#!">{number}</a>
         </li>
       ))}

@@ -12,7 +12,7 @@ export const searchMovies = (text, page) => async dispatch => {
     setLoading();
 
     let data;
-    
+
     if (text !== '') {
       const res = await fetch(`${baseUrl}&query=${text}&page=${page}`);
       data = await res.json();
