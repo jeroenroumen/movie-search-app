@@ -1,16 +1,10 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { searchMovies } from '../../actions/movieActions';
 import Preloader from '../layout/Preloader';
 import MovieItem from './MovieItem';
 
-const Movies = ({ searchMovies, movie: { movies, loading } }) => {
-
-  useEffect(() => {
-    searchMovies();
-    // eslint-disable-next-line
-  }, []);
+const Movies = ({ movie: { movies, loading } }) => {
 
   if (loading || movies === null) {
     return <Preloader />
@@ -22,7 +16,7 @@ const Movies = ({ searchMovies, movie: { movies, loading } }) => {
         <li className="collection-header">
           <h4 className="center">Movies</h4>
         </li>
-        {!loading && movies.length === 0 ? (
+        {!loading && (movies.length === 0) ? (
             <p className="center">No movies to show. Do a search!</p>
           ) :
           (
@@ -34,7 +28,6 @@ const Movies = ({ searchMovies, movie: { movies, loading } }) => {
 };
 
 Movies.propTypes = {
-  searchMovies: PropTypes.func.isRequired,
   movie: PropTypes.object.isRequired
 };
 
@@ -42,4 +35,4 @@ const mapStateToProps = state => ({
   movie: state.movie
 });
 
-export default connect(mapStateToProps, { searchMovies })(Movies);
+export default connect(mapStateToProps, null)(Movies);

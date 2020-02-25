@@ -4,17 +4,23 @@ import {
   MOVIES_ERROR
 } from './types';
 
-const baseUrl = "https://api.themoviedb.org/3/movie";
+const baseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}`;
 
 // Get now running movies
-export const searchMovies = text => async dispatch => {
+export const searchMovies = (text, page) => async dispatch => {
   try {
     setLoading();
 
-    const res = await fetch(`${baseUrl}/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}&region=CZ`);
-    const data = await res.json();
-
-    console.log(data);
+    let data;
+    
+    if (text !== '') {
+      const res = await fetch(`${baseUrl}&query=${text}&page=${page}`);
+      data = await res.json();
+    } else {
+      data = {
+        results: []
+      }
+    }
 
     dispatch({
       type: GET_MOVIES,

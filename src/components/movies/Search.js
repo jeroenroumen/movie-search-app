@@ -1,5 +1,30 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { searchMovies } from '../../actions/movieActions';
+
+const Search = ({ searchMovies }) => {
+
+  const text = useRef('');
+
+  const onChange = () => {
+    searchMovies(text.current.value, 1);
+  };
+
+  return (
+    <div>
+      <form>
+        <input
+          id="search"
+          type="search"
+          placeholder="Search movies..."
+          ref={text}
+          onChange={onChange} />
+      </form>
+      <Button className="blue">Clear</Button>
+    </div>
+  )
+};
 
 const Button = styled.button`
     display: inline-block;
@@ -15,24 +40,7 @@ const Button = styled.button`
     width: 100%;
 `;
 
-const Search = () => {
+export default connect(null, { searchMovies })(Search);
 
-  const [text, setText ] = useState('');
 
-  return (
-    <div>
-      <form>
-        <input
-          type="text"
-          name="text"
-          value={text}
-          placeholder="Search movies..."
-          onChange={e => setText(e.target.value)} />
-      </form>
-      <Button className="blue">Clear</Button>
-    </div>
-  )
-};
-
-export default Search;
 
