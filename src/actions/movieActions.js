@@ -1,13 +1,13 @@
 import {
   GET_MOVIES,
   SET_LOADING,
-  MOVIES_ERROR
+  MOVIES_ERROR, SET_SEARCH_TERM
 } from './types';
 
 const baseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}`;
 
 // Get now running movies
-export const searchMovies = (text, page) => async dispatch => {
+export const searchMovies = (text, page = 1) => async dispatch => {
   try {
     setLoading();
 
@@ -31,6 +31,14 @@ export const searchMovies = (text, page) => async dispatch => {
       type: MOVIES_ERROR,
       payload: error.response.status
     })
+  }
+};
+
+// set loading to true
+export const setSearchTerm = searchTerm => {
+  return {
+    type: SET_SEARCH_TERM,
+    payload: searchTerm
   }
 };
 

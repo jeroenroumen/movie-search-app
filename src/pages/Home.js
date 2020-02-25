@@ -1,55 +1,34 @@
-import React, { Fragment, useRef } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import Search from '../components/movies/Search';
 import Movies from '../components/movies/Movies';
 import Pagination from '../components/movies/Pagination';
-import { searchMovies } from '../actions/movieActions';
-import styled from 'styled-components';
+import { searchMovies, setSearchTerm } from '../actions/movieActions';
 
-const Home = ({ searchMovies }) => {
+const Home = ({ searchMovies, setSearchTerm, movie: { searchTerm } }) => {
 
-  const text = useRef('');
-
-  const onChange = (page = 1) => {
-    searchMovies(text.current.value, page);
+  const handleSearchChange = query => {
+    setSearchTerm(query);
+    searchMovies(query);
   };
 
-  const handlePagination = pageNumber => {
-    onChange(pageNumber);
+  const handleClick = number => {
+    searchMovies(searchTerm, number);
   };
 
   return (
     <Fragment>
       <div className="container">
-        <div>
-          <form>
-            <input
-              id="search"
-              type="search"
-              placeholder="Search movies..."
-              ref={text}
-              onChange={onChange} />
-          </form>
-          <Button className="blue">Clear</Button>
-        </div>
+        <Search change={handleSearchChange} />
         <Movies />
-        <Pagination click={handlePagination} />
+        <Pagination click={handleClick} />
       </div>
     </Fragment>
   )
 };
 
-const Button = styled.button`
-    display: inline-block;
-    color: #FFFFFF;
-    padding: 0.4rem 2.3rem;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    margin-right: 0.5rem;
-    transition: opacity 0.2s ease-in;
-    outline: none;
-    display: block;
-    width: 100%;
-`;
+const mapStateToProps = state => ({
+  movie: state.movie
+});
 
-export default connect(null, { searchMovies })(Home);
+export default connect(mapStateToProps, { searchMovies, setSearchTerm })(Home);

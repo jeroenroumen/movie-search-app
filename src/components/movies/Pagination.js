@@ -9,7 +9,7 @@ const Pagination = ({ loading, movie: { movies, page, total_pages }, click }) =>
         <li className={page === 1 ? 'disabled' : 'waves-effect'}>
           <a href="#!" onClick={() => click(page-1)}><i className="material-icons">chevron_left</i></a>
         </li>
-        <span>{(movies.length * page - movies.length) + 1} - {movies.length * page} of {total_pages * movies.length}</span>
+        <span>Page: </span><strong>{page} </strong><span>of </span><strong>{total_pages}</strong>
         <li className={page === total_pages ? 'disabled' : 'waves-effect'}>
           <a href="#!" onClick={() => click(page+1)}><i className="material-icons">chevron_right</i></a>
         </li>

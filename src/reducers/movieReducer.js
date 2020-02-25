@@ -1,7 +1,8 @@
 import {
   GET_MOVIES,
   MOVIES_ERROR,
-  SET_LOADING
+  SET_LOADING,
+  SET_SEARCH_TERM
 } from '../actions/types';
 
 const initialState = {
@@ -9,7 +10,8 @@ const initialState = {
   page: null,
   total_pages: null,
   loading: false,
-  error: false
+  error: false,
+  searchTerm: null
 };
 
 export default (state = initialState, action) => {
@@ -20,7 +22,13 @@ export default (state = initialState, action) => {
         movies: action.payload.results,
         page: action.payload.page,
         total_pages: action.payload.total_pages,
+        total_results: action.payload.total_results,
         loading: false
+      };
+    case SET_SEARCH_TERM:
+      return {
+        ...state,
+        searchTerm: action.payload
       };
     case MOVIES_ERROR:
       return {
