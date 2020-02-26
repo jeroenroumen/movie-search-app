@@ -10,7 +10,7 @@ const MovieItem = ({ movie }) => {
         <br />
         <span className='black-text'>
           <span className='grey-text'>Released on</span>{' '}
-          <Moment format='MMMM Do YYYY'>{movie.release_date}</Moment>
+          <Moment format='MMMM Do YYYY'>{new Date(movie.release_date)}</Moment>
         </span>
         <span href='#!' className='secondary-content'>
           <div className='secondary-content'>

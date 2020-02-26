@@ -4,13 +4,11 @@ const Search = ({ change }) => {
 
   return (
     <div>
-      <form>
-        <input
-          id="search"
-          type="search"
-          placeholder="Search movies..."
-          onChange={e => change(e.target.value)}/>
-      </form>
+      <input
+        id="search"
+        type="search"
+        placeholder="Search movies..."
+        onChange={e => change(e.target.value)}/>
     </div>
   )
 };

@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   movies: [],
-  movie: null,
+  selectedMovie: null,
   page: null,
   total_pages: null,
   loading: false,
@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
     case GET_MOVIE:
       return {
         ...state,
-        movie: action.payload,
+        selectedMovie: action.payload,
         loading: false
       };
     case GET_MOVIES:
